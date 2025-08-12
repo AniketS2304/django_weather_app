@@ -7,6 +7,7 @@ load_dotenv()
 def home(request):
     api = os.getenv('API_key')
     city_name = request.POST.get("city", "Pune")
+    city_name = city_name.lower()
       
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api}"
     PARAMS = {"units": "metric"}
@@ -24,6 +25,7 @@ def home(request):
         desc = "City not found or API error"
         icon = "01d"
         temp = "N/A"
+        day = ""
         
     payload = {
         'desc': desc,
